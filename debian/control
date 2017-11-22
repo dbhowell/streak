@@ -1,0 +1,18 @@
+Source: com.github.dbhowell.streak
+Section: business
+Priority: optional
+Maintainer: David Howell <davidh@dynamicmethods.com.au>
+Build-Depends: cmake (>= 2.8),
+               debhelper (>= 9),
+               libgtk-3-dev,
+               valac (>= 0.16),
+               libgranite-dev,
+               libjson-glib-dev,
+               libsoup-2.4-dev
+Standards-Version: 3.9.3
+
+Package: com.github.dbhowell.streak
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Streak
+ Stripe Analytics on your desktop
