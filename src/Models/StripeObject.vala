@@ -1,10 +1,6 @@
 namespace Streak {
   public class StripeObject : Object {
     public string object_type { get; set; }
-  
-    public StripeObject () {
-
-    }
 
     public StripeObject.with_object (Json.Object obj) {
       object_type = obj.get_string_member ("object");
@@ -25,10 +21,6 @@ namespace Streak {
         default:
           item = null;
           break;
-      }
-
-      if (item != null) {
-        item.object_type = object_type;
       }
 
       return item;

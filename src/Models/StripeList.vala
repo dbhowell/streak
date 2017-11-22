@@ -4,11 +4,7 @@ namespace Streak {
   public class StripeList : StripeObject {
     public bool has_more { get; set; }
     public string url { get; set; }
-    public ArrayList<StripeObject> data { get; set; }
-  
-    public StripeList () {
-      data = new Gee.ArrayList<StripeObject>();
-    }
+    public ArrayList<StripeObject> data { get; set; default=new Gee.ArrayList<StripeObject>(); }
 
     public StripeList.with_object (Json.Object obj) {
       base.with_object (obj);
