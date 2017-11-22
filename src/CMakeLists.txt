@@ -2,13 +2,14 @@ include(ValaPrecompile)
 
 vala_precompile(VALA_C ${EXEC_NAME}
   Streak.vala
+  Settings.vala
   MainWindow.vala
 
   Services/StripeAccount.vala
 
   Widgets/TransactionsTreeView.vala
   Widgets/EmptyAlert.vala
-  Widgets/WelcomeAlert.vala
+  Widgets/WelcomeView.vala
   Widgets/HeaderBar.vala
 
   Models/StripeObject.vala
