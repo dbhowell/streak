@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Streak
+Comment=Stripe Analytics
+Exec=com.github.dbhowell.streak
+Icon=com.github.dbhowell.streak
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Office;Business;

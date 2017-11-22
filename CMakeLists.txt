@@ -19,7 +19,6 @@ add_definitions(-w)
 set (PKG_DEPS
     gtk+-3.0
     libnotify
-    wingpanel-2.0
     granite
     libsoup-2.4
     json-glib-1.0
@@ -28,7 +27,6 @@ set (PKG_DEPS
 set (VALA_DEPS
     gtk+-3.0
     libnotify
-    wingpanel-2.0
     granite
     libsoup-2.4
     json-glib-1.0

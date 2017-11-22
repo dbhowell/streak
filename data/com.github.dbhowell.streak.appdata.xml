@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.github.dbhowell.streak.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Streak</name>
+  <summary>Stripe Analytics</summary>
+  <description>
+    <p>
+      Stripe Analytics on your desktop. Quickly and easily see what is happening with your Stripe account.
+    </p>
+  </description>
+  <provides>
+    <binary>streak</binary>
+  </provides>
+  <releases>
+    <release version="0.0.1" date="2017-12-01">
+      <description>
+        <p>Huge Success!</p>
+        <ul>
+          <li>Presentations saved can now be viewed from a web browser by drag and drop if Streak is not installed, and even if you're not using elementary OS or Linux</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/dbhowell/streak/master/Screenshot.png</image>
+    </screenshot>
+  </screenshots>
+  <developer_name>David Howell</developer_name>
+  <url type="homepage">https://github.com/dbhowell/streak</url>
+  <url type="bugtracker">https://github.com/dbhowell/streak/issues</url>
+  <url type="help">https://github.com/dbhowell/streak/issues</url>
+  <update_contact>davidh@dynamicmethods.com.au</update_contact>
+</component>
