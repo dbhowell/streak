@@ -1,5 +1,9 @@
+using Streak.Services;
+
 namespace Streak {
     public class MainWindow : Gtk.Window {
+        private Streak.HeaderBar headerbar;
+        private StripeAccount account = new StripeAccount ();
 
         public MainWindow () {
             get_style_context ().add_class ("rounded");
@@ -10,7 +14,10 @@ namespace Streak {
             build_ui ();
         }
 
-        private void build_ui () {            
+        private void build_ui () {
+            headerbar = new Streak.HeaderBar ();
+            set_titlebar (headerbar);
+         
             show_all ();
         }
     }
