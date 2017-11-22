@@ -5,10 +5,11 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 include (GNUInstallDirs)
 
+set (EXEC_NAME "com.github.dbhowell.streak")
 set (PKGDATADIR "${CMAKE_INSTALL_FULL_DATAROOTDIR}/${CMAKE_PROJECT_NAME}")
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "Streak")
-set (VERSION "0.1")
+set (VERSION "0.0.1")
 set (VERSION_INFO "Release")
 set (CMAKE_C_FLAGS "-ggdb")
 
@@ -32,7 +33,6 @@ set (VALA_DEPS
     json-glib-1.0
     linux
 )
-
 
 find_package(PkgConfig)
 pkg_check_modules (DEPS REQUIRED ${PKG_DEPS})

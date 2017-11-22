@@ -1,6 +1,6 @@
 include(ValaPrecompile)
 
-vala_precompile(VALA_C
+vala_precompile(VALA_C ${EXEC_NAME}
   Streak.vala
   MainWindow.vala
 
@@ -8,7 +8,7 @@ vala_precompile(VALA_C
 
   Widgets/TransactionsTreeView.vala
   Widgets/EmptyAlert.vala
-  Widgets/NotConfigureAlert.vala
+  Widgets/WelcomeAlert.vala
   Widgets/HeaderBar.vala
 
   Models/StripeObject.vala
@@ -16,20 +16,18 @@ vala_precompile(VALA_C
   Models/StripeList.vala
   Models/StripeTransaction.vala
 
-  #${CMAKE_CURRENT_BINARY_DIR}/config.vala
-
 PACKAGES
   ${VALA_DEPS}
 OPTIONS
   ${GLOBAL_VALAC_OPTIONS}
   -g
   --thread
-#  --vapidir=${CMAKE_SOURCE_DIR}/vapi
+  --vapidir=${CMAKE_SOURCE_DIR}/vapi
 )
 
-include (gresource)
+# include (gresource)
 # glib_compile_resources(GLIB_RESOURCES_ICONS SOURCE ../data/assets.gresource.xml)
 
-add_executable(com.github.dbhowell.streak ${VALA_C} ${GLIB_RESOURCES_ICONS})
+add_executable(${EXEC_NAME} ${VALA_C} ${GLIB_RESOURCES_ICONS})
 
 install(TARGETS com.github.dbhowell.streak RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR})
