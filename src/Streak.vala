@@ -8,7 +8,7 @@ namespace Streak {
 
       Intl.setlocale (LocaleCategory.ALL, "");
 
-      program_name = ("Streak");
+      program_name = _("Streak");
       app_years = "2017";
       app_icon = "accessories-business";
       app_launcher = "com.github.dbhowell.streak.desktop";
