@@ -3,11 +3,21 @@ namespace Streak {
     public signal void response (StripeObject history);
     public signal void error (StripeError error);
 
-    private string base_uri = "https://api.stripe.com/v1/";
     private Soup.Session session;
+    private string base_uri = "https://api.stripe.com/v1/";
     private string api_key { get; set; default = ""; }
 
     public StripeAccount () {
+      setup_session ();
+    }
+
+    public StripeAccount.with_api_key (string api_key) {
+      setup_session ();
+
+      this.api_key = api_key;
+    }
+
+    private void setup_session () {
       session = new Soup.Session ();
 
       session.authenticate.connect ((message, auth, retrying) => {
@@ -15,11 +25,6 @@ namespace Streak {
           auth.authenticate (this.api_key, "");
         }
       });
-    }
-
-    public StripeAccount.with_api_key (string api_key) {
-      this.api_key = api_key;
-      base ();
     }
 
     public void balance_history (string? starting_after, int limit = 10) {
@@ -33,7 +38,7 @@ namespace Streak {
       session.queue_message (msg, message_response); 
     }
 
-    private void message_response (Soup.Session session, Soup.Message message) {
+    private void message_response (Soup.Session sess, Soup.Message message) {
       Json.Parser parser = new Json.Parser ();
       string body = (string)message.response_body.flatten ().data;
 
