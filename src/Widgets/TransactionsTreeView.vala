@@ -36,6 +36,8 @@ namespace Streak {
       insert_column_with_data_func (-1, _("Fee"), amount, fee_cell);
       insert_column_with_attributes (-1, _("Description"), cell, "text", 4);
       insert_column_with_attributes (-1, _("Available On"), cell, "text", 5);
+
+      get_column (4).set_expand (true);
     }
 
     private void amount_cell (Gtk.TreeViewColumn tree_column, Gtk.CellRenderer cell, Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
