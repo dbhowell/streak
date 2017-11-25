@@ -5,6 +5,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
   Settings.vala
   MainWindow.vala
 
+  Dialogs/Preferences.vala
+
   Services/StripeAccount.vala
 
   Widgets/TransactionsTreeView.vala
