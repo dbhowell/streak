@@ -9,16 +9,24 @@ set (EXEC_NAME "com.github.dbhowell.streak")
 set (PKGDATADIR "${CMAKE_INSTALL_FULL_DATAROOTDIR}/${CMAKE_PROJECT_NAME}")
 set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
 set (RELEASE_NAME "Streak")
+set (DESKTOP_FILE ${CMAKE_PROJECT_NAME}.desktop)
 set (VERSION "0.0.1")
-set (VERSION_INFO "Release")
+set (VERSION_INFO "Alpha")
 set (CMAKE_C_FLAGS "-ggdb")
+
+# CTest
+include (CTest)
+if (BUILD_TESTING)
+    add_test (NAME validate-desktop-file COMMAND desktop-file-validate ${CMAKE_BINARY_DIR}/data/${DESKTOP_FILE})
+    add_test (NAME validate-appdata COMMAND appstreamcli validate ${CMAKE_BINARY_DIR}/data/${CMAKE_PROJECT_NAME}.appdata.xml)
+endif ()
 
 add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 # disable C compiler warnings
 add_definitions(-w)
 
 set (PKG_DEPS
-    gtk+-3.0
+    gtk+-3.0>=3.10
     libnotify
     granite
     libsoup-2.4
@@ -26,7 +34,7 @@ set (PKG_DEPS
 )
 
 set (VALA_DEPS
-    gtk+-3.0
+    gtk+-3.0>=3.10
     libnotify
     granite
     libsoup-2.4
