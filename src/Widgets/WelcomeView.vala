@@ -19,11 +19,34 @@
  
 namespace Streak {
   public class WelcomeView : Granite.Widgets.Welcome {
+    public signal void preferences ();
+
     public class WelcomeView () {
       base (_("Streak"), _("Analytics for Stripe"));
     
       append ("emblem-web", _("Create a Stripe API key"), _("Create and copy an API key from the Stripe Dashboard."));
       append ("edit-copy", _("Paste API key into Streak"), _("Paste the API key into Streak."));
+
+      activated.connect(on_activated);
+    }
+
+    private void on_activated (int index) {
+      switch (index) {
+        case 0:
+          launch_api_url ();
+          break;
+        default:
+          preferences();
+          break;
+      }
+    }
+
+    private void launch_api_url () {
+      try {
+          AppInfo.launch_default_for_uri ("https://dashboard.stripe.com/account/apikeys", null);
+      } catch (Error e) {
+          warning ("%s\n", e.message);
+      }
     }
   }
 }
