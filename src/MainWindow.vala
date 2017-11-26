@@ -26,6 +26,8 @@ namespace Streak {
         private Streak.HeaderBar headerbar = new Streak.HeaderBar ();
         private WelcomeView welcome = new WelcomeView ();
         private TransactionsTreeView transactions = new TransactionsTreeView ();
+        private Gtk.ScrolledWindow scrolled = new Gtk.ScrolledWindow (null, null);
+        private Gtk.Stack stack = new Gtk.Stack ();
 
         public MainWindow () {
             get_style_context ().add_class ("rounded");
@@ -52,28 +54,38 @@ namespace Streak {
             account.response.connect(stripe_response);
             account.error.connect(stripe_error);
 
+            welcome.preferences.connect (on_preferences);
+
             show.connect(window_show);
         }
 
         private void build_ui () {
             set_titlebar (headerbar);
 
-            var scrolled = new Gtk.ScrolledWindow (null, null);
             scrolled.expand = true;
-    
+            scrolled.add (transactions);
+
+            stack.add_named (welcome, "Welcome");
+            stack.add_named (scrolled, "Transactions");            
+
             if (settings.api_key != "") {
-                scrolled.add (transactions);
+                stack.set_visible_child_name ("Transactions");
             } else {
-                scrolled.add (welcome);
+                stack.set_visible_child_name ("Welcome");
             }
 
-            add (scrolled);
+            add (stack);
         }
 
         private void on_settings_changed () {
-            account.api_key = settings.api_key;
-            transactions.clear ();
-            fetch_balance_history (null);
+            if (settings.api_key != "") {
+                account.api_key = settings.api_key;
+                transactions.clear ();
+                fetch_balance_history (null);
+                stack.set_visible_child_name ("Transactions");
+            } else {
+                stack.set_visible_child_name ("Welcome");
+            }
         }
 
         private void on_preferences () {
@@ -82,7 +94,7 @@ namespace Streak {
         }
 
         private void window_show () {
-            fetch_balance_history (null);
+            on_settings_changed ();
         }
 
         private void stripe_error (StripeError err) {
@@ -95,7 +107,9 @@ namespace Streak {
                 transactions.append (list);
 
                 if (list.has_more) {
-                    fetch_balance_history (list.data.get(list.data.size - 1));
+                    StripeObject starting_after = list.data.get(list.data.size - 1);
+                    int limit = calculate_limit (list.data.size);
+                    fetch_balance_history (starting_after, limit);
                 } else {
                     headerbar.working = false;
                 }
@@ -104,9 +118,17 @@ namespace Streak {
             }
         }
 
-        private void fetch_balance_history (StripeObject? starting_after = null) {
+        private void fetch_balance_history (StripeObject? starting_after = null, int limit = 10) {
             headerbar.working = true;
-            account.balance_history (starting_after);
+            account.balance_history (starting_after, limit);
+        }
+
+        private int calculate_limit (int limit) {
+            if (limit + 10 >= 100) {
+                return 100;
+            }
+
+            return limit + 10;
         }
     }
 }
