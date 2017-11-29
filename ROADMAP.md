@@ -3,6 +3,7 @@
  - [x] Create basic welcome view
  - [x] Store API Key
  - [x] Fetch balance transactions
+ - [x] Show balance transactions in TreeView
  - [x] Poll balance every 5 minutes
  - [ ] Store stripe data in sqlite (via GDA)
  - [ ] create desktop widget
