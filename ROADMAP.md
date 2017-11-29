@@ -1,0 +1,14 @@
+# Roadmap
+ - [x] Create basic StripeAccount service
+ - [x] Create basic welcome view
+ - [x] Store API Key
+ - [x] Fetch balance transactions
+ - [x] Poll balance every 5 minutes
+ - [ ] Store stripe data in sqlite (via GDA)
+ - [ ] create desktop widget
+ - [ ] Add desktop notifications on new transactions
+ - [ ] Improve on-boarding (use Connect/OAuth 2.0?)
+ - [ ] Improve desktop icon
+ - [ ] Add summary views
+ - [ ] Add customer list
+ - [ ] Allow customer/transaction searches
